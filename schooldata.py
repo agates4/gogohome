@@ -44,6 +44,7 @@ class SchoolData():
         data = data[-10:]
         data = data[:5]
         return data 
-#print SchoolData().get_data_from_csv(3)
+
+#print SchoolData().get_zip(2)
 
 
