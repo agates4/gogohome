@@ -82,14 +82,16 @@ def hello_world():
                 from_='+12162083656', 
                 body=address['name'] + "\n" + address['address'] + '\n' + address['price'] + '\n' + address['number']
             )
-        response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>" + '\nAll done! Do you want to search again? Yes, or No?' + "</Message></Response>"
+        response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>" + '\nAll done! Do you want to give Feedback or Search ?' + "</Message></Response>"
     else:
-        if message == "yes":
+        if message == "search":
             session.clear()
             session['counter'] = 1
             response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>Welcome! What is your monthly budget? Example: 100</Message></Response>"
+        elif message == "feedback" or response['givingFeedback'] == True:
+            response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>What do you think?</Message></Response>"
         else:
-            response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>If you want to search again just reply with \"Yes\"</Message></Response>"
+            response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>If you want to search again just reply with \"Search\"</Message></Response>"
     
     return str(response)
 
