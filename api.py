@@ -16,15 +16,16 @@ class LocationFinder:
             r = urllib.urlopen(result['url']).read()
             soup = BeautifulSoup(r, "html.parser")
             address_tag = soup.find_all("div", class_="mapaddress")
-            print(address_tag)
             if not address_tag:
-                print("no address found")
+                pass
             else:
                 i = i + 1
+                print('--------------------')
                 print(address_tag[0].text)
                 print(result['price'])
                 print(result['name'])
                 print(result['url'])
+                print('--------------------\n')
                 address['address'] = address_tag[0].text
                 address['price'] = result['price']
                 address['name'] = result['name']
