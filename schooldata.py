@@ -9,15 +9,15 @@ class SchoolData():
         print "creating SchoolData obj"
 
     def get_data_from_csv(self, priority): #pass in a priority (1-3) based on how much they value school
-        zip_codes=[] 
+        zip_codes=["44706"] 
         if priority==1:
             for items in reader:
                 try:
                     if float(items[16]) > 65:
-                        print items[16]
                         zip_codes.append(items[7]) 
                 except:
                     pass
+                    
             return zip_codes
 
         if priority==2:
@@ -40,7 +40,10 @@ class SchoolData():
 
     def get_zip(self, priority):
         data = self.get_data_from_csv(priority)
+            
+
         data = random.choice(data)
+
         try:
             data = data[-10:]
             data = data[:5]
@@ -48,6 +51,6 @@ class SchoolData():
             self.get_zips(priority)
         return data 
 
-#print SchoolData().get_zip(3)
+print SchoolData().get_zip(3)
 
 
