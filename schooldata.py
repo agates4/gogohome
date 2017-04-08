@@ -41,10 +41,13 @@ class SchoolData():
     def get_zip(self, priority):
         data = self.get_data_from_csv(priority)
         data = random.choice(data)
-        data = data[-10:]
-        data = data[:5]
+        try:
+            data = data[-10:]
+            data = data[:5]
+        except:
+            self.get_zips(priority)
         return data 
 
-#print SchoolData().get_zip(2)
+#print SchoolData().get_zip(3)
 
 

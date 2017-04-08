@@ -36,5 +36,5 @@ class LocationFinder:
 
 
 # int , int , string
-# loc = LocationFinder(850, 44110, 'bus')
-# print(loc.find_addresses())
+#loc = LocationFinder(850, 44706, '')
+#print(loc.find_addresses())
