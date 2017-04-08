@@ -1,6 +1,7 @@
 from craigslist import CraigslistHousing
 from bs4 import BeautifulSoup
 import urllib
+from random import randint
 
 
 class LocationFinder:
@@ -30,12 +31,22 @@ class LocationFinder:
                 address['price'] = result['price']
                 address['name'] = result['name']
                 address['url'] = result['url']
+                address['number'] = self.get_phone()
                 locations.append(address)
             if i == 3:
                 break
         return locations
+    
+    def get_phone(self):
+        f=randint(111,950)
+        b=randint(1001,9899)
+        a=randint(100,999)
+        num="("+str(a)+")-"+str(f)+"-"+str(b)
+        return num 
+        
 
 
 # int , int , string
-#loc = LocationFinder(850, 44706, '')
+loc = LocationFinder(850, 44706, '')
 #print(loc.find_addresses())
+print loc.get_phone()
