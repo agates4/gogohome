@@ -42,6 +42,9 @@ class LocationFinder:
         b=randint(1001,9899)
         a=randint(100,999)
         num="("+str(a)+")-"+str(f)+"-"+str(b)
+        z=ranint(0,1)
+        if (z == 0):
+            return ""
         return num 
         
 
