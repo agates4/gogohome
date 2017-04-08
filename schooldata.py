@@ -1,15 +1,16 @@
+    #f.close()
 import csv
 import random
-f = open('schools.csv', 'rb')
-reader = csv.reader(f)
-        #f.close()
 
 class SchoolData():
     def __init__(self):
         print "creating SchoolData obj"
 
     def get_data_from_csv(self, priority): #pass in a priority (1-3) based on how much they value school
-        zip_codes=["44706"] 
+
+        f = open('schools.csv', 'rb')
+        reader = csv.reader(f)
+        zip_codes=[] 
         if priority==1:
             for items in reader:
                 try:
@@ -40,8 +41,7 @@ class SchoolData():
 
     def get_zip(self, priority):
         data = self.get_data_from_csv(priority)
-            
-
+        print data
         data = random.choice(data)
 
         try:
@@ -51,6 +51,5 @@ class SchoolData():
             self.get_zips(priority)
         return data 
 
-print SchoolData().get_zip(3)
-
+#jprint SchoolData().get_zip(1)
 
