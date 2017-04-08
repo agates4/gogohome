@@ -1,4 +1,6 @@
 python-zillow
 xmltodict
 python-craigslist
-
+beautifulsoup4
+bs4
+requests
