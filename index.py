@@ -35,7 +35,7 @@ def hello_world():
         response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>How many bedrooms do you need? Example: 2</Message></Response>"
     elif counter == 3:
         session['bathrooms'] = message
-        response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>List these in order of importance: School Transportation Hospital</Message></Response>"
+        response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>List these in order of importance: School Transportation Healthcare</Message></Response>"
     elif counter == 4:
         session['importance'] = message
         temp = message.split()
@@ -49,7 +49,7 @@ def hello_world():
         elif temp[0] == 'transportation':
             transPriority = 1
             query = 'bus'
-        elif temp[0] == 'hospital':
+        elif temp[0] == 'healthcare':
             hospPriority = 1
             query = 'hospital'
 
@@ -57,14 +57,14 @@ def hello_world():
             schoolPriority = 2
         elif temp[1] == 'transportation':
             transPriority = 2
-        elif temp[1] == 'hospital':
+        elif temp[1] == 'healthcare':
             hospPriority = 2
 
         if temp[2] == 'school':
             schoolPriority = 3
         elif temp[2] == 'transportation':
             transPriority = 3
-        elif temp[2] == 'hospital':
+        elif temp[2] == 'healthcare':
             hospPriority = 3
 
         schoolData = SchoolData()
@@ -80,7 +80,7 @@ def hello_world():
             client.messages.create(
                 to=request.values.get('From', None), 
                 from_='+12162083656', 
-                body=address['name'] + "\n" + address['address'] + '\n' + address['price'], 
+                body=address['name'] + "\n" + address['address'] + '\n' + address['price'] + '\n' + address['number']
             )
         response = "<?xml version='1.0' encoding='UTF-8'?><Response><Message>" + '\nAll done! Do you want to search again? Yes, or No?' + "</Message></Response>"
     else:
