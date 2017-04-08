@@ -52,4 +52,3 @@ class SchoolData():
         return data 
 
 #jprint SchoolData().get_zip(1)
-
