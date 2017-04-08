@@ -1,5 +1,7 @@
 from flask import Flask, request, session
 from twilio import twiml
+from schooldata import SchoolData
+from api import LocationFinder
 
 SECRET_KEY = 'randomshit'
 app = Flask(__name__)
@@ -19,7 +21,6 @@ def hello_world():
 
     # Build our reply
     # paramArray contains the user responses, in the order of questions asked.
-    paramArray = []
     response = ""
     if counter == 1:
         response = 'Welcome! What is your monthly budget? Example: 100'
@@ -31,13 +32,40 @@ def hello_world():
         response = 'How many bathrooms do you need? Example: 1'
     elif counter == 4:
         session['bathrooms'] = message
-        response = 'What is more important to you? Schools, or Transportation?'
+        response = 'List these in order of importance: Schools Transportation Hospitals'
     elif counter == 5:
         session['importance'] = message
-        paramArray.append(session['budget'])
-        paramArray.append(session['bedrooms'])
-        paramArray.append(session['bathrooms'])
-        paramArray.append(session['importance'])
+        temp = message.split()
+        schoolPriority = 0
+        transPriority = 0
+        hospPriority = 0
+        if temp[0] == 'schools':
+            schoolPriority = 1
+        elif temp[0] == 'transportation':
+            transPriority = 1
+        elif temp[0] == 'hospitals':
+            hospPriority = 1
+
+        if temp[1] == 'schools':
+            schoolPriority = 2
+        elif temp[1] == 'transportation':
+            transPriority = 2
+        elif temp[1] == 'hospitals':
+            hospPriority = 2
+
+        if temp[2] == 'schools':
+            schoolPriority = 3
+        elif temp[2] == 'transportation':
+            transPriority = 3
+        elif temp[2] == 'hospitals':
+            hospPriority = 3
+
+        print(schoolPriority)
+        print(transPriority)
+        print(hospPriority)
+        schoolData = SchoolData()
+        zipcode = schoolData.get_zip(schoolPriority)
+        api = LocationFinder(session['budget'], zipcode, schoolPriority)
         response = 'All done! Do you want to search again? Yes, or No?'
     else:
         if message == "yes":
@@ -47,8 +75,6 @@ def hello_world():
         else:
             response = 'If you want to search again just reply with "Yes"'
     
-    print(paramArray)
-
     # Put it in a TwiML response
     resp = twiml.Response()
     resp.message(response)

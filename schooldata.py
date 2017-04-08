@@ -47,7 +47,3 @@ class SchoolData():
 #print SchoolData().get_data_from_csv(3)
 
 
-SchoolData().get_zip(2)
-
-
-
