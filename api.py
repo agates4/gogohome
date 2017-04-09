@@ -50,6 +50,6 @@ class LocationFinder:
 
 
 # int , int , string
-loc = LocationFinder(850, 44706, '')
+#loc = LocationFinder(850, 44706, '')
 #print(loc.find_addresses())
-print loc.get_phone()
+#print loc.get_phone()
